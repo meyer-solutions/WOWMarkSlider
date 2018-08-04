@@ -69,16 +69,16 @@ open class WOWTooltipView: UIView {
         // draw text 
         if let text = self.text {
             
-            let size = text.size(attributes: [NSFontAttributeName: font])
+            let size = text.size(withAttributes: [NSAttributedStringKey.font: font])
             let yOffset = (roundedRect.size.height - size.height) / 2.0
             let textRect = CGRect(x:roundedRect.origin.x, y: yOffset, width: roundedRect.size.width, height: size.height)
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             
-            let attrs = [NSFontAttributeName: font,
-                         NSParagraphStyleAttributeName: paragraphStyle,
-                         NSForegroundColorAttributeName: textColor] as [String : Any]
+            let attrs = [NSAttributedStringKey.font: font,
+                         NSAttributedStringKey.paragraphStyle: paragraphStyle,
+                         NSAttributedStringKey.foregroundColor: textColor]
             text.draw(in:textRect, withAttributes: attrs)
         }
     }
