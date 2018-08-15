@@ -147,6 +147,18 @@ open class WOWMarkSlider: UISlider {
         UIView.commitAnimations()
     }
     
+    
+    open func showPopup(_ time : TimeInterval = 5) {
+        positionAndUpdatePopupView()
+        fadePopupViewInAndOut(fadeIn: true)
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        self.perform(#selector(self.hidePopup), with: nil, afterDelay: time)
+    }
+    
+    @objc private func hidePopup() {
+        fadePopupViewInAndOut(fadeIn: false)
+    }
+    
     // MARK: drawing
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
